@@ -259,7 +259,7 @@ local autoscore_keybind = ball_tab:CreateKeybind({
 })
 
 local hitbox_section = ball_tab:CreateSection("Hitbox")
-local hitbox_label = player_tab:CreateLabel("CURRENTLY BROKEN (ISN'T REPLICATED TO SERVER)", "file-warning",Color3.fromRGB(255,0,0)) -- Title, Icon, Color, IgnoreTheme
+local hitbox_label = ball_tab:CreateLabel("CURRENTLY BROKEN (ISN'T REPLICATED TO SERVER)", "file-warning",Color3.fromRGB(255,0,0)) -- Title, Icon, Color, IgnoreTheme
 local hitbox_toggle = ball_tab:CreateToggle({
    Name = "Hitbox Extender Enabled",
    CurrentValue = false,
