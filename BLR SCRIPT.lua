@@ -75,9 +75,9 @@ local window = rayfield:CreateWindow({
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
-      Enabled = false,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
+      Enabled = true,
+      FolderName = "VoidzsterScripts", -- Create a custom folder for your hub/game
+      FileName = "Blue Lock Rivals Script"
    },
 
    Discord = {
@@ -130,6 +130,7 @@ local killswitch_label = welcome_tab:CreateLabel("Use kill switch if executing s
 local player_tab = window:CreateTab("Player", "user") -- Title, Image
 
 local playerstats_section = player_tab:CreateSection("Player Info")
+local playerstats_label = player_tab:CreateLabel("IF SCRIPT IS EXECUTED TWICE CHANGING THESE SLIDERS WILL CRASH THE GAME.", "file-warning",Color3.fromRGB(255,0,0)) -- Title, Icon, Color, IgnoreTheme
 local playerstats_walkspeed_slider = player_tab:CreateSlider({
    Name = "Speed",
    Range = {0, 65},
@@ -177,6 +178,8 @@ local playerstats_jumppower_slider = player_tab:CreateSlider({
    end,
 })
 
+local teleporttoball_section = player_tab:CreateSection("Teleport to ball")
+local teleporttoball_label = player_tab:CreateLabel("VERY BUGGY (DON'T USE WHEN FAR FROM BALL)", "file-warning",Color3.fromRGB(255,0,0)) -- Title, Icon, Color, IgnoreTheme
 local teleporttoball_keybind = player_tab:CreateKeybind({
    Name = "Teleport to ball",
    CurrentKeybind = "Z",
@@ -256,6 +259,7 @@ local autoscore_keybind = ball_tab:CreateKeybind({
 })
 
 local hitbox_section = ball_tab:CreateSection("Hitbox")
+local hitbox_label = player_tab:CreateLabel("CURRENTLY BROKEN (ISN'T REPLICATED TO SERVER)", "file-warning",Color3.fromRGB(255,0,0)) -- Title, Icon, Color, IgnoreTheme
 local hitbox_toggle = ball_tab:CreateToggle({
    Name = "Hitbox Extender Enabled",
    CurrentValue = false,
@@ -283,11 +287,18 @@ local hitbox_slider = ball_tab:CreateSlider({
       hitbox.Size = Vector3.one * getgenv()._hitbox_size
    end,
 })
+local hitbox_button = ball_tab:CreateButton({
+   Name = "Reset Size",
+   Callback = function()
+      getgenv()._hitbox_size = 4.93666
+      hitbox.Size = Vector3.one * getgenv()._hitbox_size
+   end,
+})
 
 -- VISUAL
 
 local visual_tab = window:CreateTab("Visual", "eye") -- Title, Image
-local visual_hitbox_section = visual_tab:CreateSection("Hitbox")
+local visual_hitbox_section = visual_tab:CreateSection("Hitbox Visuals")
 local visual_hitbox_toggle = visual_tab:CreateToggle({
    Name = "Hitbox Visuals Enabled",
    CurrentValue = false,
@@ -331,3 +342,5 @@ ball.ChildAdded:Connect(function(child)
        end)
    end
 end)
+
+rayfield:LoadConfiguration()
