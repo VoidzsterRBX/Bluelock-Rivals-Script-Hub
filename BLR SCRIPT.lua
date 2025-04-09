@@ -1,8 +1,8 @@
-local cancel_when_already_injected = false
+getgenv().cancel_when_already_injected = false
 
 if getrenv().Void_BLR_Script_Executed == true then
    warn("Script already executed on roblox instance.")
-   if cancel_when_already_injected == true then
+   if getgenv().cancel_when_already_injected == true then
       warn("Stopping Script")
       return
    end
