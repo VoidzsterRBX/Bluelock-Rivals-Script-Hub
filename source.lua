@@ -200,12 +200,12 @@ local magnusball_keybind = ball_tab:CreateKeybind({
    Name = "Keybind",
    CurrentKeybind = "F",
    HoldToInteract = true,
-   Flag = "MagnusBallKeybind",
-      local char,hrp,hum = getCharacter()
+   Flag = "MagnusBallKeybind", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Keybind)
       if Keybind == false then
-         getgenv()._magnus = false
+          _magnus = false
       else
-         getgenv()._magnus = true
+         _magnus = true
          local camera = workspace.CurrentCamera
          camera.CameraSubject = ball
          local bv = Instance.new("BodyVelocity")
@@ -216,13 +216,13 @@ local magnusball_keybind = ball_tab:CreateKeybind({
          repeat
             local camera = workspace.CurrentCamera
             local pos = camera.CFrame.LookVector
-            bv.Velocity = (pos * (getgenv()._magnus_speed / 10))
+            bv.Velocity = (pos * (_magnus_speed / 10))
             task.wait()
-         until getgenv()._magnus == false
+         until _magnus == false
          bv:Destroy()
-         camera.CameraSubject = hum
+         camera.CameraSubject = char.Humanoid
          local pos = camera.CFrame.LookVector
-         ball.AssemblyLinearVelocity = (pos * (getgenv()._magnus_speed / 10))
+         ball.AssemblyLinearVelocity = (pos * (_magnus_speed / 10))
       end
    end,
 })
